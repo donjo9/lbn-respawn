@@ -2,87 +2,53 @@ import React from 'react'
 import Head from 'next/head'
 import Nav from '../components/nav'
 
-const Home = () => (
-  <div>
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+const Home = () => {
 
-    <Nav />
+    const OFFSET = 16;
+    const MAX_SIZE = 1.5;
+    const MIN_SIZE = 0.5;
+    let stars = [];
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            stars.push(<img src="star.svg" key={i + j} style={{ position: "absolute", zIndex: -1, height: Math.floor(Math.random() * MAX_SIZE) + MIN_SIZE + "vh", left: (10 + (OFFSET * i)) + Math.floor(Math.random() * OFFSET) + "vw", top: (10 + (OFFSET * j)) + Math.floor(Math.random() * OFFSET) + "vh" }} className="star" />)
+        }
+    }
+    return (
+        <div id="container"> <img id="logo" src="LbN_logo_guld.svg" alt="LbN guld logo" />
+            {stars}
+            <style jsx global>
+                {`
+                html,
+                body,
+                #__next {
+                    margin: 0px;
+                    padding: 0px;
+                    position: relative;
+                }`}
+            </style>
+        <style jsx>{`
+            #color1 {
+                fill: green;
+            }
 
-    <div className="hero">
-      <h1 className="title">Welcome to Next.js!</h1>
-      <p className="description">
-        To get started, edit <code>pages/index.js</code> and save to reload.
-      </p>
+            #container {
+                position: relative;
+                background: radial-gradient(ellipse closest-side, #1d49ab, #08081c);
+                width: 100vw;
+                height: 100vh;
+                z-index: 1;
+            }
 
-      <div className="row">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Learn more about Next.js in the documentation.</p>
-        </a>
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Next.js Learn &rarr;</h3>
-          <p>Learn about Next.js by following an interactive tutorial!</p>
-        </a>
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Find other example boilerplates on the Next.js GitHub.</p>
-        </a>
-      </div>
-    </div>
-
-    <style jsx>{`
-      .hero {
-        width: 100%;
-        color: #333;
-      }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
-      }
-    `}</style>
-  </div>
-)
+            #logo {
+                position: relative;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                height: 50vh;
+            }
+            `}</style>
+        </div>
+    )
+}
 
 export default Home
