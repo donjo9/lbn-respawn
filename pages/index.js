@@ -10,22 +10,12 @@ const Home = () => {
     let stars = [];
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
-            stars.push(<img src="star.svg" key={i + j} style={{ position: "absolute", zIndex: -1, height: Math.floor(Math.random() * MAX_SIZE) + MIN_SIZE + "vh", left: (10 + (OFFSET * i)) + Math.floor(Math.random() * OFFSET) + "vw", top: (10 + (OFFSET * j)) + Math.floor(Math.random() * OFFSET) + "vh" }} className="star" />)
+            stars.push(<img src="star.svg" key={"" + i + j } style={{ position: "absolute", zIndex: -1, height: Math.floor(Math.random() * MAX_SIZE) + MIN_SIZE + "%", left: (10 + (OFFSET * i)) + Math.floor(Math.random() * OFFSET) + "%", top: (10 + (OFFSET * j)) + Math.floor(Math.random() * OFFSET) + "%" }} className="star" />)
         }
     }
     return (
         <div id="container"> <img id="logo" src="LbN_logo_guld.svg" alt="LbN guld logo" />
             {stars}
-            <style jsx global>
-                {`
-                html,
-                body,
-                #__next {
-                    margin: 0px;
-                    padding: 0px;
-                    position: relative;
-                }`}
-            </style>
         <style jsx>{`
             #color1 {
                 fill: green;
@@ -34,8 +24,6 @@ const Home = () => {
             #container {
                 position: relative;
                 background: radial-gradient(ellipse closest-side, #1d49ab, #08081c);
-                width: 100vw;
-                height: 100vh;
                 z-index: 1;
             }
 

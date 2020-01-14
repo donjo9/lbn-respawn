@@ -2,40 +2,37 @@ import React from 'react'
 import Link from 'next/link'
 
 const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' },
+    { href: '/', label: 'Home' },
+    { href: '/origin', label: 'Origin' },
+    { href: '/legends', label: 'Legends' },
+    { href: '/dadsbyday', label: 'DadsByDay' },
 ].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`
-  return link
+    link.key = `nav-link-${link.href}-${link.label}`
+    return link
 })
 
 const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </li>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
-    </ul>
+    <nav>
+        <ul>
+            {links.map(({ key, href, label }) => (
+                <li key={key}>
+                    <a href={href}>{label}</a>
+                </li>
+            ))}
+        </ul>
 
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
+        <style jsx>{`
       nav {
+          max-width: 800px;
+          width: 100%;
+          justify-self: center;
         text-align: center;
+        background-color: #08081c;
+        max-height: 10vh;
       }
       ul {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
       }
       nav > ul {
         padding: 4px 16px;
@@ -45,12 +42,14 @@ const Nav = () => (
         padding: 6px 8px;
       }
       a {
-        color: #067df7;
+        background: -webkit-linear-gradient(rgb(206, 184, 111), rgb(182,152,83),rgb(182,152,83), rgb(206, 184, 111));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         text-decoration: none;
-        font-size: 13px;
+        font-size: 1.5rem;
       }
     `}</style>
-  </nav>
+    </nav>
 )
 
 export default Nav
