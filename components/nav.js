@@ -1,55 +1,65 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
 
 const links = [
-    { href: '/', label: 'Home' },
-    { href: '/origin', label: 'Origin' },
-    { href: '/legends', label: 'Legends' },
-    { href: '/dadsbyday', label: 'DadsByDay' },
+    { href: "/", label: "Home" },
+    { href: "/origin", label: "Origin" },
+    { href: "/legends", label: "Legends" },
+    { href: "/dadsbyday", label: "DadsByDay" }
 ].map(link => {
-    link.key = `nav-link-${link.href}-${link.label}`
-    return link
-})
+    link.key = `nav-link-${link.href}-${link.label}`;
+    return link;
+});
+
+const NavContainer = styled.nav`
+    max-width: 800px;
+    width: 100%;
+    justify-self: center;
+    text-align: center;
+    background-color: #08081c;
+    max-height: 10vh;
+`;
+
+const NavList = styled.ul`
+    display: flex;
+    justify-content: space-around;
+    padding: 4px 16px;
+    list-style: none;
+`;
+const NavItem = styled.li`
+    padding: 6px 8px;
+`;
+
+const NavLink = styled.a`
+    background: var(--gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-decoration: initial;
+    :focus, 
+    :hover{
+        text-decoration: underline;
+        text-decoration-color: #719cff;
+    }
+`;
 
 const Nav = () => (
-    <nav>
-        <ul>
+    <NavContainer>
+        <NavList>
             {links.map(({ key, href, label }) => (
-                <li key={key}>
-                    <a href={href}>{label}</a>
-                </li>
+                <NavItem key={key}>
+                    <Link href={href}>
+                        <NavLink>{label}</NavLink>
+                    </Link>
+                </NavItem>
             ))}
-        </ul>
+        </NavList>
+    </NavContainer>
+);
 
-        <style jsx>{`
-      nav {
-          max-width: 800px;
-          width: 100%;
-          justify-self: center;
-        text-align: center;
-        background-color: #08081c;
-        max-height: 10vh;
-      }
-      ul {
-        display: flex;
-        justify-content: space-around;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        background: -webkit-linear-gradient(rgb(206, 184, 111), rgb(182,152,83),rgb(182,152,83), rgb(206, 184, 111));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-decoration: none;
-        font-size: 1.5rem;
-      }
-    `}</style>
-    </nav>
-)
-
-export default Nav
+export default Nav;
+/*
+ 
+*/
