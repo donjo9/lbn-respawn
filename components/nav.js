@@ -56,9 +56,9 @@ const Nav = () => (
                 </NavItem>
             ))}
             <NavItem>
-                <Link href="https://epparel.net/team-shops/lamersbynight/">
-                    <NavLink target="_blank"  rel="noopener norefferer">Webshop</NavLink>
-                </Link>
+                
+                    <NavLink href="https://epparel.net/team-shops/lamersbynight/" target="_blank"  rel="noopener norefferer">Webshop</NavLink>
+                
             </NavItem>
 
         </NavList>
