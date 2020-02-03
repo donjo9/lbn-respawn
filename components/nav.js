@@ -55,7 +55,11 @@ const Nav = () => (
                     </Link>
                 </NavItem>
             ))}
-<NavItem><Link href="https://epparel.net/team-shops/lamersbynight/"><NavLink target="_blank"  rel="noopener norefferer">Webshop</NavLink</Link></NavItem>
+            <NavItem>
+                <Link href="https://epparel.net/team-shops/lamersbynight/">
+                    <NavLink target="_blank"  rel="noopener norefferer">Webshop</NavLink>
+                </Link>
+            </NavItem>
 
         </NavList>
     </NavContainer>
