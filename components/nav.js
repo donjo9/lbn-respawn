@@ -13,21 +13,24 @@ const links = [
 });
 
 const NavContainer = styled.nav`
+    z-index: 2;
+    width: 100vw;
     max-width: 800px;
-    width: 100%;
     justify-self: center;
     text-align: center;
     background-color: #08081c;
-    max-height: 10vh;
+    /*max-height: 10vh;*/
 `;
 
 const NavList = styled.ul`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     padding: 4px 16px;
     list-style: none;
 `;
 const NavItem = styled.li`
+display: block;
     padding: 6px 8px;
 `;
 

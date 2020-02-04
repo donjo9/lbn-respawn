@@ -10,6 +10,7 @@ const Logo = styled.img`
         top: 50%;
         transform: translate(-50%, -50%);
         height: 50vh;
+        max-width: 100vw;
     }
 `;
 
@@ -18,6 +19,7 @@ const Container = styled.div`
         position: relative;
         background: radial-gradient(ellipse closest-side, #1d49ab, #08081c);
         z-index: 1;
+        width: 100vw;
     }
 `;
 
