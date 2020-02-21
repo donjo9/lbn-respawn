@@ -41,7 +41,19 @@ const Result = styled.li`
 `;
 
 const Res = ({ matchesInfo }) => {
-    const matches = matchesInfo.reverse().map(match => {
+    const matches = [];
+    const gruppe = matchesInfo.reduce((acc, cur) => {
+        //console.log(cur)
+        let newgroup = {...acc}
+        if(acc[cur.tournamentPhaseId]) {
+            newgroup[cur.tournamentPhaseId].count++;
+        } else {
+            newgroup[cur.tournamentPhaseId] = {"groupName1": cur.groupName1, count:  0, groupName2: cur.groupName2}
+        }
+        return newgroup;
+    },{})
+    console.log(JSON.stringify(gruppe, null, 4));
+    /*const matches = matchesInfo.reverse().map(match => {
         const matchResult = match.matchTeams.map(mTeam => (
             <React.Fragment key={"" + match.id + mTeam.team.id}>
                 <td>{mTeam.team.name}</td>
@@ -53,7 +65,7 @@ const Res = ({ matchesInfo }) => {
                 <ResultRow> {matchResult}</ResultRow>
             </React.Fragment>
         );
-    });
+    });*/
     return (
         <ResultContainer>
             <Name>Result</Name>

@@ -5,12 +5,12 @@ import fetch from "isomorphic-unfetch";
 
 
 const Origin = ({team}) => {
-    const matches = team.matches.map(x => ({"matchTeams": x.matchTeams, "id": x.id}))
+    //const matches = .map(x => ({"matchTeams": x.matchTeams, "id": x.id}))
     const members = team.members.map(x => x.user.nickName)
     return (
         <div>
             <Team name="Origin" members={members} />
-            <Res matchesInfo={matches} />
+            <Res matchesInfo={team.matches} />
         </div>
     )
 }
