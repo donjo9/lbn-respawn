@@ -1,11 +1,15 @@
 import React from 'react';
 import Team from '../components/team';
 import fetch from "isomorphic-unfetch";
+import Res from '../components/results';
 
 const DadsByDay = ({team}) => {
     const members = team.members.map(x => x.user.nickName)
     return (
-        <Team name="DadsByDay" members={members} />
+        <div>
+            <Team name="Origin" members={members} />
+            <Res matchesInfo={team.matches} />
+        </div>
     )
 }
 

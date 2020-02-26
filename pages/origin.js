@@ -5,7 +5,6 @@ import fetch from "isomorphic-unfetch";
 
 
 const Origin = ({team}) => {
-    //const matches = .map(x => ({"matchTeams": x.matchTeams, "id": x.id}))
     const members = team.members.map(x => x.user.nickName)
     return (
         <div>
