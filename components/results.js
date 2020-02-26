@@ -32,7 +32,7 @@ const Row = styled.div`
         );
     & div {
         text-align: center;
-        padding: 0.5rem 0.1rem;
+        padding: 0.5rem 0.1rem; 
     }
 `;
 
@@ -46,7 +46,8 @@ const Res = ({ matchesInfo }) => {
             if (cur.resultLocked) {
                 newgroup[cur.tournamentPhaseId]["results"].push({
                     teams: cur.matchTeams,
-                    id: cur.id
+                    id: cur.id,
+                    time: cur.time
                 });
             } else {
                 newgroup[cur.tournamentPhaseId]["matches"].push({
@@ -66,7 +67,8 @@ const Res = ({ matchesInfo }) => {
             if (cur.resultLocked) {
                 newgroup[cur.tournamentPhaseId]["results"].push({
                     teams: cur.matchTeams,
-                    id: cur.id
+                    id: cur.id,
+                    time: cur.time
                 });
             } else {
                 newgroup[cur.tournamentPhaseId]["matches"].push({
@@ -120,15 +122,21 @@ const Res = ({ matchesInfo }) => {
                         </React.Fragment>
                     );
                 });
-            const results = x.results.map(x => (
-                <React.Fragment key={x.id}>
-                    <div>{x.teams[0].team.name}</div>
-                    <div>
-                        {x.teams[0].score} - {x.teams[1].score}
-                    </div>
-                    <div>{x.teams[1].team.name}</div>
-                </React.Fragment>
-            ));
+            const results = x.results
+                .sort((a, b) => {
+                    const at = new Date(a.time);
+                    const bt = new Date(b.time);
+                    return bt - at;
+                })
+                .map(x => (
+                    <React.Fragment key={x.id}>
+                        <div>{x.teams[0].team.name}</div>
+                        <div>
+                            {x.teams[0].score} - {x.teams[1].score}
+                        </div>
+                        <div>{x.teams[1].team.name}</div>
+                    </React.Fragment>
+                ));
 
             /*console.log(matches);
             console.log(results);*/
