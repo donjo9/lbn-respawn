@@ -14,7 +14,6 @@ const NameSmall = styled.h4`
 const ResultContainer = styled.div`
     padding: 1rem;
     margin: 0 auto;
-
     max-width: 900px;
 `;
 const Results = styled.div`
@@ -27,12 +26,16 @@ const Results = styled.div`
 const Row = styled.div`
     display: grid;
     max-width: 500px;
-    grid-template-columns: 1fr 5rem 1fr;
+    grid-template-columns: minmax(min-content, 1fr) max-content minmax(
+            min-content,
+            1fr
+        );
     & div {
         text-align: center;
-        padding: 0.5rem;
+        padding: 0.5rem 0.1rem;
     }
-`
+`;
+
 const Res = ({ matchesInfo }) => {
     //const matches = [];
     const gruppe = matchesInfo.reduce((acc, cur) => {
@@ -48,7 +51,8 @@ const Res = ({ matchesInfo }) => {
             } else {
                 newgroup[cur.tournamentPhaseId]["matches"].push({
                     teams: cur.matchTeams,
-                    id: cur.id
+                    id: cur.id,
+                    time: cur.time
                 });
             }
         } else {
@@ -67,7 +71,8 @@ const Res = ({ matchesInfo }) => {
             } else {
                 newgroup[cur.tournamentPhaseId]["matches"].push({
                     teams: cur.matchTeams,
-                    id: cur.id
+                    id: cur.id,
+                    time: cur.time
                 });
             }
         }
@@ -80,49 +85,65 @@ const Res = ({ matchesInfo }) => {
     const matches = groups
         .sort((a, b) => b.id - a.id)
         .map(x => {
-            const matches = x.matches.map(x => (
-                <React.Fragment key={x.id}>
-                    <div>{x.teams[0].team.name}</div>
-                    <div>vs</div>
-                    <div>{x.teams[1].team.name}</div>
-                </React.Fragment>
-            ));
+            const matches = x.matches
+                .sort((a, b) => {
+                    const at = new Date(a.time);
+                    const bt = new Date(b.time);
+                    return at - bt;
+                })
+                .map(x => {
+                    const t = new Date(x.time);
+                    const time =
+                        t
+                            .getDate()
+                            .toString()
+                            .padStart(2, 0) +
+                        "-" +
+                        t
+                            .getMonth()
+                            .toString()
+                            .padStart(2, 0) +
+                        "-" +
+                        t.getFullYear() +
+                        " " +
+                        t.getHours() +
+                        ":" +
+                        t
+                            .getMinutes()
+                            .toString()
+                            .padStart(2, 0);
+                    return (
+                        <React.Fragment key={x.id}>
+                            <div>{x.teams[0].team.name}</div>
+                            <div>{time}</div>
+                            <div>{x.teams[1].team.name}</div>
+                        </React.Fragment>
+                    );
+                });
             const results = x.results.map(x => (
                 <React.Fragment key={x.id}>
                     <div>{x.teams[0].team.name}</div>
-                    <div>{x.teams[0].score}-{x.teams[1].score}</div>
+                    <div>
+                        {x.teams[0].score} - {x.teams[1].score}
+                    </div>
                     <div>{x.teams[1].team.name}</div>
                 </React.Fragment>
             ));
 
-            console.log(matches)
-            console.log(results)
+            /*console.log(matches);
+            console.log(results);*/
             return (
                 <div key={x.groupName1 + x.groupName2}>
-                    <NameSmall>{x.groupName1} - {x.groupName2}</NameSmall>
-                    {matches.length != 0 ?  <div>Matches</div> : null}
+                    <NameSmall>
+                        {x.groupName1} - {x.groupName2}
+                    </NameSmall>
+                    {matches.length != 0 ? <div>Matches</div> : null}
                     <Row>{matches}</Row>
-                    {results.length != 0 ?  <div>Results</div> : null}
+                    {results.length != 0 ? <div>Results</div> : null}
                     <Row>{results}</Row>
                 </div>
             );
         });
-
-    console.log(JSON.stringify(gruppe, null, 4));
-    console.log(JSON.stringify(groups, null, 4));
-    /*const matches = matchesInfo.reverse().map(match => {
-        const matchResult = match.matchTeams.map(mTeam => (
-            <React.Fragment key={"" + match.id + mTeam.team.id}>
-                <td>{mTeam.team.name}</td>
-                <td>{mTeam.score}</td>
-            </React.Fragment>
-        ));
-        return (
-            <React.Fragment key={match.id}>
-                <ResultRow> {matchResult}</ResultRow>
-            </React.Fragment>
-        );
-    });*/
     return (
         <ResultContainer>
             <Name>Esportligaen</Name>
