@@ -7,7 +7,7 @@ const DadsByDay = ({team}) => {
     const members = team.members.map(x => x.user.nickName)
     return (
         <div>
-            <Team name="Origin" members={members} />
+            <Team name="DadsByDay" members={members} />
             <Res matchesInfo={team.matches} />
         </div>
     )
