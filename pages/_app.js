@@ -21,6 +21,9 @@ html,body {
         padding: 0px;
         position: relative;
     }
+    *, :after, :before {
+        box-sizing: border-box;
+    }
     #__next {
         min-height: 100vh;
         display: grid;
