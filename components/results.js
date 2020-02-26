@@ -101,8 +101,8 @@ const Res = ({ matchesInfo }) => {
                             .toString()
                             .padStart(2, 0) +
                         "-" +
-                        t
-                            .getMonth()
+                        (t
+                            .getMonth()+1)
                             .toString()
                             .padStart(2, 0) +
                         "-" +
