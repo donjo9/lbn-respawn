@@ -7,7 +7,7 @@ const DadsByDay = ({team}) => {
     const members = team.members.map(x => x.user.nickName)
     return (
         <div>
-            <Team name="DadsByDay" members={members} />
+            <Team name="Zoo" members={members} />
             <Res matchesInfo={team.matches} />
         </div>
     )
@@ -16,7 +16,7 @@ const DadsByDay = ({team}) => {
 DadsByDay.getInitialProps = async ctx => {
 
     const res = await fetch(
-        "https://app.esportligaen.dk/api/team/1659?includeViewInfo=true"
+        "https://app.esportligaen.dk/api/team/2145?includeViewInfo=true"
     );
     const json = await res.json();
     return { team: json };
