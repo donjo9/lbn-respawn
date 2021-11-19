@@ -58,11 +58,7 @@ const Nav = () => (
                     </Link>
                 </NavItem>
             ))}
-            <NavItem>
-                
-                    <NavLink href="https://epparel.net/team-shops/lamersbynight/" target="_blank"  rel="noopener norefferer">Webshop</NavLink>
-                
-            </NavItem>
+           
 
         </NavList>
     </NavContainer>
