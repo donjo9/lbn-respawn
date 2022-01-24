@@ -16,7 +16,7 @@ const DadsByDay = ({team}) => {
 DadsByDay.getInitialProps = async ctx => {
 
     const res = await fetch(
-        "https://app.esportligaen.dk/api/team/2145?includeViewInfo=true"
+        "https://app.esportligaen.dk/api/team/3209?includeViewInfo=true"
     );
     const json = await res.json();
     return { team: json };
